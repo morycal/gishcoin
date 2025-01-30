@@ -1,0 +1,21 @@
+const registrationForm = document.getElementById('registrationForm');
+const message = document.getElementById('message');
+let registeredEmails = [];
+
+registrationForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // جلوگیری از ارسال فرم
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // بررسی اینکه آیا ایمیل قبلاً ثبت‌نام شده است
+    if (registeredEmails.includes(email)) {
+        message.textContent = "این ایمیل قبلاً ثبت‌نام شده است.";
+        message.style.color = 'red';
+    } else {
+        registeredEmails.push(email);
+        message.textContent = "ثبت نام با موفقیت انجام شد!";
+        message.style.color = 'green';
+        registrationForm.reset(); // بازنشانی فرم
+    }
+});
