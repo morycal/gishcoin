@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000; /* پس‌زمینه سیاه */
+    color: #ffcc00; /* رنگ پیش‌فرض متون */
+}
+
+header {
+    text-align: center;
+    color: #ff0000; /* رنگ عنوان قرمز */
+    padding: 20px;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #00ff00; /* رنگ عنوان سبز */
+}
+
+form {
+    background: #222222; /* پس‌زمینه فرم */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+}
+
+button {
+    padding: 10px 20px;
+    background: #00ff00; /* رنگ دکمه سبز */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    color: #ff0000; /* رنگ فوتر قرمز */
+}
