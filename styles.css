@@ -2,12 +2,14 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh; /* Full height */
-    background-color: black; /* Black background */
+    background-image: url('background.jpg'); /* Set background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center vertically */
     align-items: center; /* Center horizontally */
-    color: green; /* Green text */
+    color: white; /* Change text color for better visibility */
     font-family: Arial, sans-serif; /* Font style */
 }
 
@@ -15,20 +17,39 @@ h1 {
     margin-bottom: 20px; /* Space below heading */
 }
 
-.button-container {
-    margin-top: 20px; /* Space above button */
+.sections {
+    display: flex;
+    justify-content: space-around; /* Space between sections */
+    width: 100%; /* Full width */
+    position: absolute; /* Positioning to place at bottom */
+    bottom: 60px; /* Space from bottom */
 }
 
-.start-button {
-    padding: 15px 30px; /* Button padding */
-    background-color: green; /* Button background */
-    color: white; /* Button text color */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 18px; /* Font size */
-    transition: background-color 0.3s; /* Smooth transition */
+.section {
+    display: flex;
+    flex-direction: column; /* Stack icon and text */
+    align-items: center; /* Center content */
+    color: green; /* Default color for text */
 }
 
-.start-button:hover {
-    background-color: darkgreen; /* Darker green on hover */
+.section i {
+    font-size: 24px; /* Icon size */
+    margin-bottom: 5px; /* Space below icon */
+}
+
+.section.mine {
+    color: red; /* Red text color for MINE */
+    font-size: 1.5em; /* Bigger font size for MINE */
+}
+
+.mined-coins {
+    position: absolute; /* Position it absolutely */
+    top: 20px; /* Space from top */
+    right: 20px; /* Space from right */
+    text-align: center; /* Center align text */
+}
+
+.mined-coins h2 {
+    font-size: 1.5em; /* Font size for mined coins */
+    color: yellow; /* Color for visibility */
 }
