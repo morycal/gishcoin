@@ -23,7 +23,7 @@ body {
 .progress-bar {
     width: 0%;
     height: 30px; /* Height of the progress bar */
-    background-color: blue; /* Color of the progress bar */
+    background-color: green; /* Change color of the progress bar to green */
     border-radius: 5px; /* Rounded corners */
     transition: width 1s; /* Smooth transition */
 }
