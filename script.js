@@ -1,6 +1,6 @@
 let coinCount = 0;
 let pointCount = 0;
-let miningRate = 0.2; // Initial coins per minute
+let miningRate = 0.2; // 0.2 tokens per minute
 let miningInterval;
 let miningActive = false;
 let miningDuration = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
@@ -23,6 +23,18 @@ const closeMiningButton = document.getElementById('close-mining-button');
 // Costs for each level up
 const upgradeCosts = [5, 10, 20, 35, 80, 160, 320, 640, 1280, 2560];
 let upgradeCount = 0; // Track number of upgrades
+
+// Function to give tokens on first visit
+function giveInitialTokens() {
+    const storedCoins = localStorage.getItem('coins');
+    if (!storedCoins) {
+        coinCount += 15; // Give 15 tokens
+        localStorage.setItem('coins', coinCount); // Store in localStorage
+        alert('You have received 15 free tokens!'); // Notify user
+    } else {
+        coinCount = parseInt(storedCoins); // Load existing coins
+    }
+}
 
 mineButton.addEventListener('click', () => {
     miningSection.style.display = 'block'; // Show mining section
@@ -81,6 +93,7 @@ function startMining() {
             clearInterval(miningInterval);
             miningInterval = null; // Reset mining interval
             miningActive = false;
+            totalCoinsMined += 144; // Ensure total mined equals to 144 at the end
             statusMessage.textContent = `Mining has stopped. You mined ${Math.floor(totalCoinsMined)} coins!`;
         }
     }, 60000); // Update every minute
@@ -115,6 +128,9 @@ function loadUserData() {
     // Update displayed values
     pointCountElement.textContent = pointCount;
     coinCountElement.textContent = Math.floor(coinCount);
+
+    // Give initial tokens if it's the first visit
+    giveInitialTokens();
 }
 
 // Load user data on page load
