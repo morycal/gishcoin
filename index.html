@@ -1,17 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gishcoin Mining</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Mining Game</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #mining-section {
+            margin-top: 20px;
+        }
+        #progress-container {
+            width: 100%;
+            background: #f3f3f3;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        #progress-bar {
+            height: 20px;
+            background: green;
+            width: 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Gishcoin Mining</h1>
-        <div class="button-container">
-            <a href="next.html" class="start-button">START TO MINE GISHCOIN</a>
-        </div>
+    <div class="mined-coins">
+        <h2>MINED TOKEN: <span id="mined-coins">0</span></h2>
     </div>
+    <div>
+        <h2>Total Coins: <span id="coin-count">0</span></h2>
+    </div>
+    <button id="mine-button">Start Mining</button>
+    <div id="mining-section" style="display:none;">
+        <button id="start-mine-button">Start Mining</button>
+        <button id="close-mining-button">Close</button>
+        <div id="progress-container" style="display:none;">
+            <div id="progress-bar"></div>
+        </div>
+        <p id="status-message"></p>
+        <p>Time Remaining: <span id="time-remaining">00:00:00</span></p>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
