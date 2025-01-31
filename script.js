@@ -10,58 +10,14 @@ const coinCountElement = document.getElementById('coin-count');
 const pointCountElement = document.getElementById('point-count');
 const mineButton = document.getElementById('mine-button');
 const levelUpButton = document.getElementById('level-up-button');
-const telegramIdInput = document.getElementById('telegram-id');
-const loginButton = document.getElementById('login-button');
 
-const upgradeCosts = [5, 10, 20, 35, 80, 160, 320, 640, 1280, 2560]; // Costs for each level up
+// Costs for each level up
+const upgradeCosts = [5, 10, 20, 35, 80, 160, 320, 640, 1280, 2560]; 
 let upgradeCount = 0; // Track number of upgrades
 
-// Load user data from local storage
-function loadUserData() {
-    const storedTelegramId = localStorage.getItem('telegramId');
-    const storedPoints = localStorage.getItem('points');
-    const storedCoins = localStorage.getItem('coins');
-    const storedUpgrades = localStorage.getItem('upgrades');
-
-    if (storedTelegramId) {
-        telegramIdInput.value = storedTelegramId;
-        pointCount = storedPoints ? parseInt(storedPoints) : 0;
-        coinCount = storedCoins ? parseInt(storedCoins) : 0;
-        upgradeCount = storedUpgrades ? parseInt(storedUpgrades) : 0;
-
-        // Update displayed values
-        pointCountElement.textContent = pointCount;
-        coinCountElement.textContent = Math.floor(coinCount);
-        
-        // Show sections after login
-        document.querySelector('.sections').style.display = 'flex';
-    }
-}
-
-// Save user data to local storage
-function saveUserData() {
-    localStorage.setItem('telegramId', telegramIdInput.value);
-    localStorage.setItem('points', pointCount);
-    localStorage.setItem('coins', coinCount);
-    localStorage.setItem('upgrades', upgradeCount);
-}
-
-loginButton.addEventListener('click', () => {
-    const telegramId = telegramIdInput.value.trim();
-    if (telegramId) {
-        saveUserData();
-        loadUserData();
-    } else {
-        alert('Please enter a valid Telegram ID.');
-    }
-});
-
 mineButton.addEventListener('click', () => {
-    if (!miningActive) {
-        startMining();
-    } else {
-        alert('Mining is already active. Please wait until it stops.');
-    }
+    // Open a new page when MINE is clicked
+    window.open('mine.html', '_blank'); // Replace 'mine.html' with the desired URL
 });
 
 levelUpButton.addEventListener('click', () => {
@@ -98,6 +54,21 @@ function stopMining() {
     clearInterval(miningInterval);
     miningActive = false;
     alert('Mining has stopped. Please click "MINE" to start again.');
+}
+
+// Load user data (if needed)
+function loadUserData() {
+    const storedPoints = localStorage.getItem('points');
+    const storedCoins = localStorage.getItem('coins');
+    const storedUpgrades = localStorage.getItem('upgrades');
+
+    pointCount = storedPoints ? parseInt(storedPoints) : 0;
+    coinCount = storedCoins ? parseInt(storedCoins) : 0;
+    upgradeCount = storedUpgrades ? parseInt(storedUpgrades) : 0;
+
+    // Update displayed values
+    pointCountElement.textContent = pointCount;
+    coinCountElement.textContent = Math.floor(coinCount);
 }
 
 // Load user data on page load
