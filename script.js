@@ -4,7 +4,8 @@ let miningRate = 0.2; // Initial coins per minute
 let miningInterval;
 let miningActive = false;
 let miningDuration = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
-let lastMiningTime = 0;
+let elapsedTime = 0; // Time elapsed
+let totalCoinsMined = 0; // Total coins mined
 
 const coinCountElement = document.getElementById('coin-count');
 const pointCountElement = document.getElementById('point-count');
@@ -60,21 +61,27 @@ function startMining() {
     progressContainer.style.display = 'block'; // Show progress bar
     statusMessage.textContent = 'Mining has started!';
     miningActive = true;
-    let elapsedTime = 0;
+    elapsedTime = 0; // Reset elapsed time
+    totalCoinsMined = 0; // Reset total coins mined
 
     miningInterval = setInterval(() => {
         elapsedTime += 60000; // Increase elapsed time by 1 minute
-        coinCount += miningRate; // Increase coins mined
+        totalCoinsMined += miningRate; // Increase coins mined
 
         // Update progress bar
         const progress = (elapsedTime / miningDuration) * 100;
         progressBar.style.width = `${progress}%`;
 
+        // Update mined tokens and time remaining
+        document.getElementById('mined-coins').textContent = Math.floor(totalCoinsMined);
+        const timeRemaining = miningDuration - elapsedTime;
+        document.getElementById('time-remaining').textContent = formatTime(timeRemaining);
+
         if (elapsedTime >= miningDuration) {
             clearInterval(miningInterval);
             miningInterval = null; // Reset mining interval
             miningActive = false;
-            statusMessage.textContent = `Mining has stopped. You mined ${Math.floor(coinCount)} coins!`;
+            statusMessage.textContent = `Mining has stopped. You mined ${Math.floor(totalCoinsMined)} coins!`;
         }
     }, 60000); // Update every minute
 }
@@ -84,6 +91,15 @@ function stopMining() {
     miningActive = false;
     progressBar.style.width = '0%'; // Reset progress bar
     progressContainer.style.display = 'none'; // Hide progress bar
+}
+
+function formatTime(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
 // Load user data on page load
