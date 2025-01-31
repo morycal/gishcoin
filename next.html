@@ -10,12 +10,18 @@
 <body>
     <div class="container">
         <h1>Welcome to Gishcoin Mining!</h1>
-        <div class="logo-container">
-            <img src="gishcoin-logo.png" alt="Gishcoin Logo" class="logo">
+
+        <div class="login">
+            <input type="text" id="telegram-id" placeholder="Enter your Telegram ID">
+            <button id="login-button">Login</button>
         </div>
 
-        <div class="sections">
-            <div class="section">
+        <div class="sections" style="display: none;">
+            <div class="section mine" id="mine-button">
+                <i class="fas fa-gem"></i>
+                <p>MINE</p>
+            </div>
+            <div class="section level-up" id="level-up-button">
                 <i class="fas fa-level-up-alt"></i>
                 <p>LEVEL UP</p>
             </div>
@@ -32,6 +38,13 @@
                 <p>PROFILE</p>
             </div>
         </div>
+
+        <div class="mined-coins">
+            <h2>Mined Coins: <span id="coin-count">0</span></h2>
+            <h2>Points: <span id="point-count">0</span></h2>
+        </div>
     </div>
+
+    <script src="script.js"></script> <!-- Link to the JavaScript file -->
 </body>
 </html>
