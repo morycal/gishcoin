@@ -3,7 +3,7 @@ body {
     padding: 0;
     height: 100vh; /* Full height */
     background-color: black; /* Set background color to black */
-    color: white; /* Change text color for better visibility */
+    color: rgb(255, 255, 255); /* Change text color for better visibility */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center vertically */
