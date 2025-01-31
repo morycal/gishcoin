@@ -2,54 +2,28 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh; /* Full height */
-    background-image: url('background.jpg'); /* Set background image */
-    background-size: cover; /* Cover the entire viewport */
-    background-position: center; /* Center the image */
+    background-color: black; /* Set background color to black */
+    color: white; /* Change text color for better visibility */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center vertically */
     align-items: center; /* Center horizontally */
-    color: white; /* Change text color for better visibility */
     font-family: Arial, sans-serif; /* Font style */
 }
 
-h1 {
-    margin-bottom: 20px; /* Space below heading */
+/* Additional styles for the progress bar */
+.progress-container {
+    width: 100%;
+    background-color: #ddd; /* Background for the progress bar */
+    border-radius: 5px; /* Rounded corners */
+    margin: 20px 0; /* Space around the progress bar */
+    display: none; /* Initially hidden */
 }
 
-.sections {
-    display: flex;
-    justify-content: space-around; /* Space between sections */
-    width: 100%; /* Full width */
-    position: absolute; /* Positioning to place at bottom */
-    bottom: 60px; /* Space from bottom */
-}
-
-.section {
-    display: flex;
-    flex-direction: column; /* Stack icon and text */
-    align-items: center; /* Center content */
-    color: green; /* Default color for text */
-}
-
-.section i {
-    font-size: 24px; /* Icon size */
-    margin-bottom: 5px; /* Space below icon */
-}
-
-.section.mine {
-    color: red; /* Red text color for MINE */
-    font-size: 1.5em; /* Bigger font size for MINE */
-}
-
-.mined-coins {
-    position: absolute; /* Position it absolutely */
-    top: 20px; /* Space from top */
-    right: 20px; /* Space from right */
-    text-align: center; /* Center align text */
-}
-
-.mined-coins h2 {
-    font-size: 1.5em; /* Font size for mined coins */
-    color: yellow; /* Color for visibility */
+.progress-bar {
+    width: 0%;
+    height: 30px; /* Height of the progress bar */
+    background-color: blue; /* Color of the progress bar */
+    border-radius: 5px; /* Rounded corners */
+    transition: width 1s; /* Smooth transition */
 }
