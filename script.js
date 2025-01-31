@@ -11,13 +11,26 @@ const pointCountElement = document.getElementById('point-count');
 const mineButton = document.getElementById('mine-button');
 const levelUpButton = document.getElementById('level-up-button');
 
+// Mining section elements
+const miningSection = document.getElementById('mining-section');
+const startMineButton = document.getElementById('start-mine-button');
+const progressBar = document.getElementById('progress-bar');
+const progressContainer = document.getElementById('progress-container');
+const statusMessage = document.getElementById('status-message');
+const closeMiningButton = document.getElementById('close-mining-button');
+
 // Costs for each level up
-const upgradeCosts = [5, 10, 20, 35, 80, 160, 320, 640, 1280, 2560]; 
+const upgradeCosts = [5, 10, 20, 35, 80, 160, 320, 640, 1280, 2560];
 let upgradeCount = 0; // Track number of upgrades
 
 mineButton.addEventListener('click', () => {
-    // Open a new page when MINE is clicked
-    window.open('mine.html', '_blank'); // Replace 'mine.html' with the desired URL
+    miningSection.style.display = 'block'; // Show mining section
+});
+
+startMineButton.addEventListener('click', startMining);
+closeMiningButton.addEventListener('click', () => {
+    miningSection.style.display = 'none'; // Hide mining section
+    stopMining(); // Stop mining if active
 });
 
 levelUpButton.addEventListener('click', () => {
@@ -38,25 +51,42 @@ levelUpButton.addEventListener('click', () => {
 });
 
 function startMining() {
-    miningActive = true;
-    lastMiningTime = Date.now();
-    miningInterval = setInterval(() => {
-        const elapsedTime = (Date.now() - lastMiningTime) / 60000; // Convert ms to minutes
-        coinCount += miningRate * elapsedTime;
-        coinCountElement.textContent = Math.floor(coinCount); // Update displayed coin count
-        lastMiningTime = Date.now();
-    }, 60000); // Update every minute
+    if (miningActive) {
+        alert('Mining is already in progress.');
+        return;
+    }
 
-    setTimeout(stopMining, miningDuration); // Stop mining after 12 hours
+    progressBar.style.width = '0%'; // Reset progress bar
+    progressContainer.style.display = 'block'; // Show progress bar
+    statusMessage.textContent = 'Mining has started!';
+    miningActive = true;
+    let elapsedTime = 0;
+
+    miningInterval = setInterval(() => {
+        elapsedTime += 60000; // Increase elapsed time by 1 minute
+        coinCount += miningRate; // Increase coins mined
+
+        // Update progress bar
+        const progress = (elapsedTime / miningDuration) * 100;
+        progressBar.style.width = `${progress}%`;
+
+        if (elapsedTime >= miningDuration) {
+            clearInterval(miningInterval);
+            miningInterval = null; // Reset mining interval
+            miningActive = false;
+            statusMessage.textContent = `Mining has stopped. You mined ${Math.floor(coinCount)} coins!`;
+        }
+    }, 60000); // Update every minute
 }
 
 function stopMining() {
     clearInterval(miningInterval);
     miningActive = false;
-    alert('Mining has stopped. Please click "MINE" to start again.');
+    progressBar.style.width = '0%'; // Reset progress bar
+    progressContainer.style.display = 'none'; // Hide progress bar
 }
 
-// Load user data (if needed)
+// Load user data on page load
 function loadUserData() {
     const storedPoints = localStorage.getItem('points');
     const storedCoins = localStorage.getItem('coins');
