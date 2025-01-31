@@ -38,6 +38,16 @@
             <h2>Mined Coins: <span id="coin-count">0</span></h2>
             <h2>Points: <span id="point-count">0</span></h2>
         </div>
+
+        <div id="mining-section" style="display: none;">
+            <h1>Mining in Progress...</h1>
+            <button id="start-mine-button">START MINE</button>
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p id="status-message"></p>
+            <button id="close-mining-button">Close Mining</button>
+        </div>
     </div>
 
     <script src="script.js"></script> <!-- Link to the JavaScript file -->
