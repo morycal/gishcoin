@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .progress-container {
+            width: 100%;
+            background-color: #ddd; /* Background for the progress bar */
+            border-radius: 5px; /* Rounded corners */
+            margin: 20px 0; /* Space around the progress bar */
+            display: none; /* Initially hidden */
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 30px; /* Height of the progress bar */
+            background-color: blue; /* Color of the progress bar */
+            border-radius: 5px; /* Rounded corners */
+            transition: width 1s; /* Smooth transition */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mining in Progress...</h1>
+        <button id="start-mine-button">START MINE</button>
+        <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p id="status-message"></p>
+        <button onclick="window.close()">Close</button> <!-- Button to close the window -->
+    </div>
+
+    <script src="mine.js"></script> <!-- Link to the JavaScript file for mining logic -->
+</body>
+</html>
