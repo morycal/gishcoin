@@ -21,7 +21,7 @@ function giveInitialTokens() {
     if (!storedCoins) {
         coinCount += 15; // Give 15 tokens
         localStorage.setItem('coins', coinCount); // Store in localStorage
-        alert('You have received 15 free tokens!'); // Notify user
+        alert('You have received 15 free MINED TOKEN!'); // Notify user
     } else {
         coinCount = parseInt(storedCoins); // Load existing coins
     }
