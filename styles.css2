@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full height */
+    background-color: black; /* Black background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    color: green; /* Green text */
+    font-family: Arial, sans-serif; /* Font style */
+}
+
+h1 {
+    margin-bottom: 20px; /* Space below heading */
+}
+
+.button-container {
+    margin-top: 20px; /* Space above button */
+}
+
+.start-button {
+    padding: 15px 30px; /* Button padding */
+    background-color: green; /* Button background */
+    color: white; /* Button text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 18px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.start-button:hover {
+    background-color: darkgreen; /* Darker green on hover */
+}
