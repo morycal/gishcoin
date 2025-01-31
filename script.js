@@ -140,3 +140,40 @@ function loadUserData() {
 
 // Load user data on page load
 loadUserData();
+function startMining() {
+    if (miningActive) {
+        alert('Mining is already in progress.');
+        return;
+    }
+
+    progressBar.style.width = '0%'; // Reset progress bar
+    progressContainer.style.display = 'block'; // Show progress bar
+    statusMessage.textContent = 'Mining has started!';
+    miningActive = true;
+    elapsedTime = 0; // Reset elapsed time
+    totalCoinsMined = 0; // Reset total coins mined
+
+    miningInterval = setInterval(() => {
+        elapsedTime += 60000; // Increase elapsed time by 1 minute
+        totalCoinsMined += miningRate; // Increase coins mined
+
+        // Update progress bar
+        const progress = (elapsedTime / miningDuration) * 100;
+        progressBar.style.width = `${progress}%`;
+
+        // Update mined tokens and time remaining
+        document.getElementById('mined-coins').textContent = Math.floor(totalCoinsMined);
+        const timeRemaining = miningDuration - elapsedTime;
+        document.getElementById('time-remaining').textContent = formatTime(timeRemaining);
+
+        if (elapsedTime >= miningDuration) {
+            clearInterval(miningInterval);
+            miningActive = false;
+            totalCoinsMined += 144; // Ensure total mined equals to 144 at the end
+            coinCount += Math.floor(totalCoinsMined); // Add mined coins to total
+            localStorage.setItem('coins', coinCount); // Update coins in localStorage
+            statusMessage.textContent = `Mining has stopped. You mined ${Math.floor(totalCoinsMined)} tokens!`;
+            coinCountElement.textContent = coinCount; // Update displayed coins
+        }
+    }, 60000); // Update every minute
+}
