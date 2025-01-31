@@ -14,6 +14,8 @@ const progressBar = document.getElementById('progress-bar');
 const progressContainer = document.getElementById('progress-container');
 const statusMessage = document.getElementById('status-message');
 const closeMiningButton = document.getElementById('close-mining-button');
+const showTasksButton = document.getElementById('show-tasks-button');
+const tasksList = document.getElementById('tasks');
 
 // Function to give tokens on first visit
 function giveInitialTokens() {
@@ -25,6 +27,37 @@ function giveInitialTokens() {
     } else {
         coinCount = parseInt(storedCoins); // Load existing coins
     }
+}
+
+// Show tasks when the button is clicked
+showTasksButton.addEventListener('click', () => {
+    const tasks = [
+        {
+            name: "Follow GISHCOIN telegram channel",
+            reward: 50,
+            link: "https://t.me/GISHCOINBOT"
+        },
+        // You can add more tasks here if needed
+    ];
+
+    tasksList.innerHTML = ''; // Clear existing tasks
+    tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.textContent = task.name;
+        li.addEventListener('click', () => completeTask(task));
+        tasksList.appendChild(li);
+    });
+
+    tasksList.style.display = 'block'; // Show tasks
+});
+
+// Complete task function
+function completeTask(task) {
+    window.open(task.link, '_blank'); // Open the Telegram link in a new tab
+    coinCount += task.reward; // Add reward to coin count
+    localStorage.setItem('coins', coinCount); // Update localStorage
+    coinCountElement.textContent = coinCount; // Update displayed coins
+    alert(`You completed the task! You received ${task.reward} tokens!`);
 }
 
 mineButton.addEventListener('click', () => {
