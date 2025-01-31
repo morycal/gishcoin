@@ -26,6 +26,20 @@
             background: green;
             width: 0;
         }
+        #task-section {
+            margin-top: 20px;
+        }
+        #tasks {
+            list-style-type: none;
+            padding: 0;
+        }
+        #tasks li {
+            background: #e0e0e0;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer; /* Change cursor to pointer */
+        }
     </style>
 </head>
 <body>
@@ -45,6 +59,12 @@
         <p id="status-message"></p>
         <p>Time Remaining: <span id="time-remaining">00:00:00</span></p>
     </div>
+
+    <div id="task-section">
+        <button id="show-tasks-button">Show Tasks</button>
+        <ul id="tasks" style="display:none;"></ul>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
